@@ -19,7 +19,7 @@ global RCtrlHeld := false
 
 #HotIf RCtrlHeld
 *L:: {
-    Send "{Blind}{LWin up}"
+    ; Send "{Blind}{LWin up}"
     DllCall("LockWorkStation")
 }
 #HotIf
