@@ -4,22 +4,23 @@
 #UseHook
 
 global RCtrlHeld := false
+SetWinKeyState(state) {
+    global RCtrlHeld
+    RCtrlHeld := state
+    Send state ? "{Blind}{LWin down}" : "{Blind}{LWin up}"
+}
 
 *RCtrl:: {
-    global RCtrlHeld
-    RCtrlHeld := true
-    Send "{Blind}{LWin down}"
+    SetWinKeyState(true)
 }
 
 *RCtrl up:: {
-    global RCtrlHeld
-    RCtrlHeld := false
-    Send "{Blind}{LWin up}"
+    SetWinKeyState(false)
 }
 
 #HotIf RCtrlHeld
 *L:: {
-    ; Send "{Blind}{LWin up}"
     DllCall("LockWorkStation")
+    SetWinKeyState(false)
 }
 #HotIf
